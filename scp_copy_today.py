@@ -26,21 +26,18 @@ try:
     # Define the list file name based on today's date
     list_file_name = f'{today_date}.txt'
     
-    with open(list_file_name, 'w') as log_file:
-        # Create an SCP client
-        with SCPClient(ssh.get_transport()) as scp:
-            # Copy the filtered files from the remote directory to the local directory
-            for file in today_files:
-                scp.get(remote_path + file, local_path)
-                # Log the downloaded file
-                log_file.write(f"file '{local_path}{file}'\n")
+    # Create an SCP client
+    with SCPClient(ssh.get_transport()) as scp:
+        # Copy the filtered files from the remote directory to the local directory
+        for file in today_files:
+            scp.get(remote_path + file, local_path)
     
     print("Files copied successfully.")
     
     # Create a timelapse video using moviepy
     image_files = [os.path.join(local_path, file) for file in today_files]
     clip = ImageSequenceClip(image_files, fps=3)
-    clip.write_videofile(f"{today_date}.mp4", codec="libx264", pix_fmt="yuv420p")
+    clip.write_videofile(f"{local_path}{today_date}.mp4", codec="libx264")
 
 except Exception as e:
     print(f"An error occurred: {e}")

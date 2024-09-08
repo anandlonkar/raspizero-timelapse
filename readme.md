@@ -2,6 +2,12 @@
 
 This repository contains scripts and configuration files to automate the process of capturing images from a Raspberry Pi camera, transferring them to a local machine, and creating a timelapse video.
 
+## Prerequisites
+Install imagemagick on raspberry pi to add timestamp
+```sh
+sudo apt install imagemagick
+```
+
 ## Repository Structure
 
 - [`config.py`](command:_github.copilot.openRelativePath?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fanand%2Ftimelapsescript%2Fconfig.py%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%5D "c:\Users\anand\timelapsescript\config.py"): Contains configuration variables such as remote and local paths, server hostname, username, and password.

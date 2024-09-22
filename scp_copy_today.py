@@ -7,6 +7,7 @@ from config import remote_path, local_path, hostname, username, password
 
 # Get today's date in the required format
 today_date = datetime.datetime.now().strftime('%Y%m%d')
+print(today_date)
 
 # Create an SSH client
 ssh = paramiko.SSHClient()
@@ -22,15 +23,17 @@ try:
     
     # Filter files based on today's date
     today_files = [f for f in files if today_date in f]
+    print(today_files)
     
     # Define the list file name based on today's date
-    list_file_name = f'{today_date}.txt'
+    # list_file_name = f'{today_date}.txt'
     
     # Create an SCP client
     with SCPClient(ssh.get_transport()) as scp:
         # Copy the filtered files from the remote directory to the local directory
         for file in today_files:
             scp.get(remote_path + file, local_path)
+            print(file)
     
     print("Files copied successfully.")
     
